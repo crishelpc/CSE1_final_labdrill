@@ -1,10 +1,13 @@
 from flask import Flask, jsonify, request, make_response
 from flask_mysqldb import MySQL
+from flask_bcrypt import Bcrypt
 from http import HTTPStatus
 from datetime import datetime
-
+import jwt, json 
+import re
 
 app = Flask(__name__)
+bcrypt = Bcrypt(app)
 
 app.config["MYSQL_HOST"] = "localhost"
 app.config["MYSQL_USER"] = "root"
