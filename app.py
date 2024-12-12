@@ -109,11 +109,10 @@ def login():
 
 @app.route("/")
 def index_page():
-    return jsonify(
-        {
-            "message": "WELCOME TO HOSPICE PATIENT CARE!"
-        }
-    ), HTTPStatus.OK
+     return """
+    <h1>WELCOME TO HOSPICE PATIENT CARE</h1>
+    <p>This is the main page of the Hospice Patient Care Database API.</p>
+    """
 
 def validate_patient_input(data):
     required_fields = ['patientFirstName', 'patientLastName', 'patientHomePhone', 'patientEmailAddress']
