@@ -219,6 +219,14 @@ def add_patient():
 
 @app.route("/patientadmissions", methods=["POST"])
 def add_admission():
+    current_user, error = validate_token()
+    if error:
+        return error
+    
+    role_error = validate_role(current_user, ['staff', 'admin'])
+    if role_error:
+        return role_error
+    
     info = request.get_json()
     error_message, status_code = validate_admission_input(info)
     if error_message:
@@ -252,6 +260,14 @@ def add_admission():
 
 @app.route("/treatments", methods=["POST"])
 def add_treatment():
+    current_user, error = validate_token()
+    if error:
+        return error
+    
+    role_error = validate_role(current_user, ['staff', 'admin'])
+    if role_error:
+        return role_error
+    
     info = request.get_json()
     error_message, status_code = validate_treatment_input(info)
     if error_message:
@@ -286,6 +302,13 @@ def add_treatment():
 
 @app.route("/treatments/<int:treatment_id>", methods=["PUT"])
 def update_treatment(treatment_id):
+    current_user, error = validate_token()
+    if error:
+        return error
+    
+    role_error = validate_role(current_user, ['staff', 'admin'])
+    if role_error:
+        return role_error
     info = request.get_json()
     treatmentStatus = info.get("treatmentStatus")
     if not treatmentStatus:
@@ -319,6 +342,13 @@ def update_treatment(treatment_id):
     
 @app.route('/patients/<int:patient_id>', methods=['DELETE'])
 def delete_patient(patient_id):
+    current_user, error = validate_token()
+    if error:
+        return error
+    
+    role_error = validate_role(current_user, ['staff', 'admin'])
+    if role_error:
+        return role_error
     try:
         cur = mysql.connection.cursor()
         cur.execute("""DELETE FROM Patients WHERE patientID = %s""", (patient_id,))
@@ -340,6 +370,14 @@ def delete_patient(patient_id):
 
 @app.route('/treatments/<int:treatment_id>', methods=['DELETE'])
 def delete_treatment(treatment_id):
+    current_user, error = validate_token()
+    if error:
+        return error
+    
+    role_error = validate_role(current_user, ['staff', 'admin'])
+    if role_error:
+        return role_error
+    
     try:
         cur = mysql.connection.cursor()
         cur.execute("""DELETE FROM Treatments WHERE treatmentID = %s""", (treatment_id,))
