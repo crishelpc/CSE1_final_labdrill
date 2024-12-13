@@ -10,10 +10,27 @@ This is a Conceptual Data Model for a Hospice Care System. It helps manage patie
 pip install -r requirements.txt
 ```
 ## Configuration
-Environment variables needed:
+To set up the database:
 
-DATABASE_URL
-SECRET_KEY
+1. Create a MySQL database called hospice_patient_care.
+2. Update the database details in the Flask app.
+
+Environment variables you need:
+
+MYSQL_HOST: MySQL server (e.g., localhost).
+MYSQL_USER: Your MySQL username (e.g., root).
+MYSQL_PASSWORD: Your MySQL password.
+MYSQL_DB: Database name (e.g., hospice_patient_care).
+SECRET_KEY: A secret key for the app (e.g., crishel).
+
+Or set these directly in the code:
+```cmd
+app.config["MYSQL_HOST"] = "localhost"
+app.config["MYSQL_USER"] = "root"
+app.config["MYSQL_PASSWORD"] = "root"
+app.config["MYSQL_DB"] = "hospice_patient_care"
+app.config["SECRET_KEY"] = "crishel"
+```
 
 ## API Endpoints (markdown table)
 | Endpoint                                      | Method   | Description                                                               |
@@ -31,8 +48,10 @@ SECRET_KEY
 | `/treatments/<int:treatment_id>`              | `DELETE` | Deletes a specific treatment record.                                      |
 
 ## Testing
- Instructions for running tests
-…
+ To test the app, run:
+ ```cmd
+pytest
+```
 
 ## Git Commit Guidelines
 
