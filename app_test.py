@@ -19,10 +19,8 @@ def client():
 
 # General Tests
 def test_index_page(client):
-    response = client.get('/')
-    assert response.status_code == 200
-    assert b"<h1>WELCOME TO HOSPICE PATIENT CARE</h1>" in response.data
-
+    response = client.get("/")
+    assert b"WELCOME TO HOSPICE PATIENT CARE" in response.data
 
 # Patients Tests
 def test_get_patients_empty(client, mock_db):

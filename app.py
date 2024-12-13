@@ -109,10 +109,88 @@ def login():
 
 @app.route("/")
 def index_page():
-     return """
-    <h1>WELCOME TO HOSPICE PATIENT CARE</h1>
-    <p>This is the main page of the Hospice Patient Care Database API.</p>
-    """
+    return """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hospice Patient Care API</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="bg-gray-100">
+        <div class="container mx-auto px-4 py-8">
+            <!-- Outer Container -->
+            <div class="bg-white shadow-md rounded-lg p-8">
+               <h1 class="text-3xl font-bold text-green-600 text-center mb-4">
+                    WELCOME TO HOSPICE PATIENT CARE
+                </h1>
+                <p class="text-gray-700 text-center text-lg mb-6">
+                    This is the main page of the Hospice Patient Care Database API.
+                </p>
+                <p class="text-gray-800 text-center text-md mb-6">
+                    Below is the list of available <span class="font-bold">GET</span> methods:
+                </p>
+
+                <!-- Grid Container with 2 columns and 2 rows -->
+                <div class="grid grid-cols-2 gap-4">
+                    <!-- GET Method Card -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 shadow-sm text-center">
+                        <h2 class="text-green-600 font-semibold">
+                            <a href="/patients" class="hover:underline">
+                                /patients
+                            </a>
+                        </h2>
+                        <p class="text-gray-700 text-sm">
+                            Get all patients in the system.
+                        </p>
+                    </div>
+
+                    <!-- GET Method Card -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 shadow-sm text-center">
+                        <h2 class="text-green-600 font-semibold">
+                            <a href="/patientadmissions/1" class="hover:underline">
+                                /patientadmissions/&lt;int:patient_id&gt;
+                            </a>
+                        </h2>
+                        <p class="text-gray-700 text-sm">
+                            Get admission details of a specific patient.
+                        </p>
+                    </div>
+
+                    <!-- GET Method Card -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 shadow-sm text-center">
+                        <h2 class="text-green-600 font-semibold">
+                            <a href="/healthprofessionals/1/patients" class="hover:underline">
+                                /healthprofessionals/&lt;int:staff_id&gt;/patients
+                            </a>
+                        </h2>
+                        <p class="text-gray-700 text-sm">
+                            Get all patients assigned to a specific health professional.
+                        </p>
+                    </div>
+
+                    <!-- GET Method Card -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 shadow-sm text-center">
+                        <h2 class="text-green-600 font-semibold">
+                            <a href="/treatments/1" class="hover:underline">
+                                /treatments/&lt;int:patient_id&gt;
+                            </a>
+                        </h2>
+                        <p class="text-gray-700 text-sm">
+                            Get treatment history of a specific patient.
+                        </p>
+                    </div>
+                </div>
+
+                <p class="text-gray-500 text-sm mt-6 text-center">
+                    Powered by Flask
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
+"""
 
 def validate_patient_input(data):
     required_fields = ['patientFirstName', 'patientLastName', 'patientHomePhone', 'patientEmailAddress']
