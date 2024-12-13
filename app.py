@@ -145,8 +145,8 @@ def index_page():
                     <!-- GET Method Card -->
                     <div class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 shadow-sm text-center">
                         <h2 class="text-green-600 font-semibold">
-                            <a href="/patients" class="hover:underline">
-                                /patients
+                            <a href="/Patients" class="hover:underline">
+                                /Patients
                             </a>
                         </h2>
                         <p class="text-gray-700 text-sm">
@@ -157,8 +157,8 @@ def index_page():
                     <!-- GET Method Card -->
                     <div class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 shadow-sm text-center">
                         <h2 class="text-green-600 font-semibold">
-                            <a href="/patientadmissions/1" class="hover:underline">
-                                /patientadmissions/&lt;int:patient_id&gt;
+                            <a href="/Patientadmissions/1" class="hover:underline">
+                                /Patientadmissions/&lt;int:patient_id&gt;
                             </a>
                         </h2>
                         <p class="text-gray-700 text-sm">
@@ -169,8 +169,8 @@ def index_page():
                     <!-- GET Method Card -->
                     <div class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 shadow-sm text-center">
                         <h2 class="text-green-600 font-semibold">
-                            <a href="/healthprofessionals/1/patients" class="hover:underline">
-                                /healthprofessionals/&lt;int:staff_id&gt;/patients
+                            <a href="/HealthProfessionals/1/patients" class="hover:underline">
+                                /HealthProfessionals/&lt;int:staff_id&gt;/patients
                             </a>
                         </h2>
                         <p class="text-gray-700 text-sm">
@@ -181,8 +181,8 @@ def index_page():
                     <!-- GET Method Card -->
                     <div class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 shadow-sm text-center">
                         <h2 class="text-green-600 font-semibold">
-                            <a href="/treatments/1" class="hover:underline">
-                                /treatments/&lt;int:patient_id&gt;
+                            <a href="/Treatments/1" class="hover:underline">
+                                /Treatments/&lt;int:patient_id&gt;
                             </a>
                         </h2>
                         <p class="text-gray-700 text-sm">
