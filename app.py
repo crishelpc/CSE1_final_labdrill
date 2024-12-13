@@ -125,6 +125,7 @@ def index_page():
                <h1 class="text-3xl font-bold text-green-600 text-center mb-4">
                     WELCOME TO HOSPICE PATIENT CARE
                 </h1>
+
                 <p class="text-gray-700 text-center text-lg mb-6">
                     This is the main page of the Hospice Patient Care Database API.
                 </p>
@@ -205,8 +206,8 @@ def validate_admission_input(data):
         if field not in data or not data[field]:
             return f"'{field}' is required", HTTPStatus.BAD_REQUEST
     try:
-        datetime.strptime(data["dateOfAdmission"], "%Y-%m-%d")
-        datetime.strptime(data["dateOfDischarge"], "%Y-%m-%d")
+        datetime.datetime.strptime(data["dateOfAdmission"], "%Y-%m-%d")
+        datetime.datetime.strptime(data["dateOfDischarge"], "%Y-%m-%d")
     except ValueError:
         return "'dateOfAdmission' and 'dateOfDischarge' must be in 'YYYY-MM-DD' format", HTTPStatus.BAD_REQUEST
     return None, None
@@ -225,12 +226,12 @@ def data_fetch(query, params=None):
     cur.close()
     return result
 
-@app.route("/patients", methods=["GET"])
+@app.route("/Patients", methods=["GET"])
 def get_patients():
-    data = data_fetch("""SELECT * FROM patients""")
+    data = data_fetch("""SELECT * FROM Patients""")
     return jsonify(data), HTTPStatus.OK
 
-@app.route("/patientadmissions/<int:patient_id>", methods=["GET"])
+@app.route("/PatientAdmissions/<int:patient_id>", methods=["GET"])
 def get_patient_admission(patient_id):
     data = data_fetch("""SELECT * FROM PatientAdmissions WHERE patientID = %s""", (patient_id,))
     if not data:
@@ -241,7 +242,7 @@ def get_patient_admission(patient_id):
     
     return jsonify(data), HTTPStatus.OK
 
-@app.route("/healthprofessionals/<int:staff_id>/patients", methods=["GET"])
+@app.route("/HealthProfessionals/<int:staff_id>/patients", methods=["GET"])
 def get_patients_info(staff_id):
     data = data_fetch("""
         SELECT DISTINCT Patients.patientID, Patients.patientFirstName, Patients.patientLastName, 
@@ -260,13 +261,13 @@ def get_patients_info(staff_id):
 
     return jsonify(data), HTTPStatus.OK
 
-@app.route("/treatments/<int:patient_id>", methods=["GET"])
+@app.route("/Treatments/<int:patient_id>", methods=["GET"])
 def get_treatment_history(patient_id):
     data = data_fetch("""SELECT treatmentID, treatmentDescription, treatmentStatus
         FROM Treatments WHERE patientID = %s""", (patient_id,))
     return jsonify(data), HTTPStatus.OK
 
-@app.route("/patients", methods=["POST"])
+@app.route("/Patients", methods=["POST"])
 def add_patient():
     data = request.get_json()
     error_message, status_code = validate_patient_input(data)
@@ -294,7 +295,7 @@ def add_patient():
             }
         ), HTTPStatus.BAD_REQUEST
 
-@app.route("/patientadmissions", methods=["POST"])
+@app.route("/PatientAdmissions", methods=["POST"])
 def add_admission():
     current_user, error = validate_token()
     if error:
@@ -335,7 +336,7 @@ def add_admission():
             }
         ), HTTPStatus.BAD_REQUEST
 
-@app.route("/treatments", methods=["POST"])
+@app.route("/Treatments", methods=["POST"])
 def add_treatment():
     current_user, error = validate_token()
     if error:
@@ -377,7 +378,7 @@ def add_treatment():
             }
         ), HTTPStatus.BAD_REQUEST
 
-@app.route("/treatments/<int:treatment_id>", methods=["PUT"])
+@app.route("/Treatments/<int:treatment_id>", methods=["PUT"])
 def update_treatment(treatment_id):
     current_user, error = validate_token()
     if error:
@@ -417,7 +418,7 @@ def update_treatment(treatment_id):
             }
         ), HTTPStatus.BAD_REQUEST
     
-@app.route('/patients/<int:patient_id>', methods=['DELETE'])
+@app.route('/Patients/<int:patient_id>', methods=['DELETE'])
 def delete_patient(patient_id):
     current_user, error = validate_token()
     if error:
@@ -445,7 +446,7 @@ def delete_patient(patient_id):
             }
         ), HTTPStatus.BAD_REQUEST
 
-@app.route('/treatments/<int:treatment_id>', methods=['DELETE'])
+@app.route('/Treatments/<int:treatment_id>', methods=['DELETE'])
 def delete_treatment(treatment_id):
     current_user, error = validate_token()
     if error:
