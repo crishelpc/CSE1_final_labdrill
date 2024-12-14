@@ -1,9 +1,9 @@
-# CSE1_final_labdrill
-
 # Hospice Patient Care 
 
 ## Description
 This is a Conceptual Data Model for a Hospice Care System. It helps manage patient information, medical conditions, treatments, staff details to make care easier and more organized.
+
+Link: https://crishelponce.pythonanywhere.com/
 
 ## Installation
 ```cmd
@@ -50,7 +50,8 @@ app.config["SECRET_KEY"] = "crishel"
 ## Testing
  To test the app, run:
  ```cmd
-pytest
+pip install pytest
+pytest app_test.py
 ```
 
 ## Git Commit Guidelines
