@@ -17,20 +17,12 @@ To set up the database:
 
 Environment variables you need:
 
-MYSQL_HOST: MySQL server (e.g., localhost).
-MYSQL_USER: Your MySQL username (e.g., root).
-MYSQL_PASSWORD: Your MySQL password.
-MYSQL_DB: Database name (e.g., hospice_patient_care).
-SECRET_KEY: A secret key for the app (e.g., crishel).
+- ```MYSQL_HOST```: MySQL server (e.g., localhost).
+- ```MYSQL_USER```: Your MySQL username (e.g., root).
+- ```MYSQL_PASSWORD```: Your MySQL password.
+- ```MYSQL_DB```: Database name (e.g., hospice_patient_care).
+- ```SECRET_KEY```: crishel
 
-Or set these directly in the code:
-```cmd
-app.config["MYSQL_HOST"] = "localhost"
-app.config["MYSQL_USER"] = "root"
-app.config["MYSQL_PASSWORD"] = "root"
-app.config["MYSQL_DB"] = "hospice_patient_care"
-app.config["SECRET_KEY"] = "crishel"
-```
 
 ## API Endpoints (markdown table)
 | Endpoint                                      | Method   | Description                                                               |
